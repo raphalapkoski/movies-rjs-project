@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { Link } from "react-router-dom";
 
 import './home.css'
@@ -22,18 +22,16 @@ export default function Home() {
     }
 
     return (
-        <div className="container">
-            <div className="list-movies">
-                {movies.map((movie) => {
-                    return (
-                        <article key={movie.id}>
-                            <Link to={`details/${movie.id}`}>
-                                <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} />
-                            </Link>
-                        </article>
-                    )
-                })}
-            </div>
+        <div className="list-movies">
+            {movies.map((movie) => {
+                return (
+                    <article key={movie.id}>
+                        <Link to={`details/${movie.id}`}>
+                            <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} />
+                        </Link>
+                    </article>
+                )
+            })}
         </div>
     )
 }
