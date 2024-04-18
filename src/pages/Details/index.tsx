@@ -7,6 +7,7 @@ import api from '../../services/api';
 
 export default function Details() {
 
+    let path = 'https://image.tmdb.org/t/p/original';
     const { id } = useParams();
     const [details, setDetails] = useState({});
 
@@ -28,11 +29,15 @@ export default function Details() {
     }
 
     return (
-        <div className="container">
-            <img src={`https://image.tmdb.org/t/p/original/${details.poster_path}`} alt={details.title} />
-            <div className="information">
+        <div className='container' style={{ backgroundImage: `url(${path}/${details.backdrop_path})` }}>
+            <div className='details-text-align'>
                 <h1>{details.title}</h1>
-                <p>{details.overview}</p>
+                <strong>{details.overview}</strong>
+                <strong className='vote'>Avaliação {details.vote_average}/10</strong>
+            </div>
+            <div className='buttons-align'>
+                <button>Assistir trailer</button>
+                <button>Adicionar ao favoritos</button>
             </div>
         </div>
     )
