@@ -1,7 +1,7 @@
 header {
     display: flex;
-    background-color: rgb(25, 22, 71);
-    height: 60px;
+    background-color: black;
+    height: 80px;
     width: 100%;
     justify-content: space-between;
     align-items: center;
@@ -9,18 +9,28 @@ header {
 
 .title {
     margin-left: 5rem;
-    color: white;
+    color: red;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 
-nav {
+header nav {
     display: flex;
-    gap: 1rem 1rem;
-    margin-right: 5rem;
+    gap: 2rem;
 
     a {
-        color: white;
+        color: gainsboro;
         text-decoration: none;
         font-size: 20px;
-        cursor: pointer;        
+        cursor: pointer;     
     }
+
+    a:hover {
+        color: white;
+      }
+}
+
+header span {
+    margin-right: 5rem;
+    color: white;
+    cursor: pointer;
 }

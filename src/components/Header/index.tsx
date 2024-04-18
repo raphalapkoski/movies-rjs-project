@@ -7,8 +7,9 @@ export default function Header(){
             <h1 className="title">Movies RJS</h1>
             <nav>
                 <NavLink to="/"> Home </NavLink>
-                <NavLink to="/"> Meus filmes </NavLink>
+                <NavLink to="/favorites"> Meus Favoritos </NavLink>
             </nav>
+            <span>Entrar</span>
         </header>
     )
 }
