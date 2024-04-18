@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom";
 
 import './home.css'
 
 import api from "../../services/api"
-import { Link } from "react-router-dom";
 
 export default function Home() {
     const [movies, setMovies] = useState([]);
-    
+
     useEffect(() => { loadMovies(); }, []);
 
     async function loadMovies() {
@@ -27,7 +27,7 @@ export default function Home() {
                 {movies.map((movie) => {
                     return (
                         <article key={movie.id}>
-                            <Link to="">
+                            <Link to={`details/${movie.id}`}>
                                 <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} />
                             </Link>
                         </article>
