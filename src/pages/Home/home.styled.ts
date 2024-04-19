@@ -1,4 +1,6 @@
-.list-movies {
+import styled from "styled-components"
+
+export const Container = styled.div`
     margin-top: 2rem;
     margin-bottom: 2rem;
     max-width: 100%;
@@ -7,13 +9,13 @@
     grid-column-gap: 2rem;
     grid-row-gap: 2rem;
     justify-content: center;
-}
+`
 
-.list-movies article {
+export const Card = styled.article`
     width: 100%;
-}
+`
 
-.list-movies img {
+export const Poster = styled.img`
     width: 100%;
     object-fit: contain;
-}
+`

@@ -1,32 +1,39 @@
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from "react"
 
-import './details.css'
+import { ButtonContainer, Container, DetailsContainer } from './details.styled';
 
-import api from '../../services/api';
+import { getMovieDetails } from '../../services/movie.services';
+
+interface Movie {
+    id: number,
+    title: string,
+    overview: string
+    backdrop_path: string
+    vote_average: number,
+}
 
 export default function Details() {
 
     let path = 'https://image.tmdb.org/t/p/original';
     let youtube = 'https://www.youtube.com/results?search_query';
     const { id } = useParams();
-    const [movie, setMovie] = useState({});
+    const [movie, setMovie] = useState<Movie>(
+        {
+            id: 0, 
+            title: '',
+            backdrop_path: '', 
+            overview: '', 
+            vote_average: 0
+        });
 
     useEffect(() => {
         loadDetails();
     });
 
     async function loadDetails() {
-        await api.get(`/movie/${id}`, {
-            params: {
-                api_key: "f18f7cd7a1d32a95a4b9332ec74bc8ab",
-                language: "pt-BR",
-            }
-        }).then((response) => {
-            setMovie(response.data);
-        }).catch(() => {
-            console.log("erro")
-        });
+        const result = await getMovieDetails(id!);
+        setMovie(result.data);
     }
 
     async function addFavorite() {
@@ -34,7 +41,7 @@ export default function Details() {
         
         let moviesSaved = list ? JSON.parse(list) : [];
 
-        const movieExists = moviesSaved.some((movie) => movie.id == movie.id);
+        const movieExists = moviesSaved.some((m: { id: number; }) => m.id == movie.id);
 
         if(movieExists){
             alert('Este filme já está em sua lista de favoritos');
@@ -47,18 +54,18 @@ export default function Details() {
     }
 
     return (
-        <div className='container' style={{ backgroundImage: `url(${path}/${movie.backdrop_path})` }}>
-            <div className='details-text-align'>
+        <Container backgroundImage={`${path}/${movie.backdrop_path}`}>
+            <DetailsContainer>
                 <h1>{movie.title}</h1>
                 <strong>{movie.overview}</strong>
                 <strong className='vote'>Avaliação {movie.vote_average} / 10</strong>
-            </div>
-            <div className='buttons-align'>
+            </DetailsContainer>
+            <ButtonContainer>
                 <button>
                     <a target='blank' href={`${youtube}=${movie.title} Trailer`}>Assistir trailer</a>
                 </button>
                 <button onClick={addFavorite}>Adicionar ao favoritos</button>
-            </div>
-        </div>
+            </ButtonContainer>
+        </Container>
     )
 }

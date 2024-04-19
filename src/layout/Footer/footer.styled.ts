@@ -7,7 +7,6 @@ export const FooterStyle = styled.footer`
     width: 100%;
     align-items: center;
     justify-content: end;
-    position: absolute;
     bottom: 0;
     gap: 1rem; 
     

@@ -1,42 +1,42 @@
-import { useState, useEffect, Suspense } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 
-import './home.css'
-
-import api from "../../services/api"
+import { getMoviesNowPlaying } from "../../services/movie.services";
 import Warning from "../../shared/Warning";
+import { Card, Container, Poster } from "./home.styled";
+
+interface Movie {
+    id: number,
+    title: string,
+    poster_path: string
+}
 
 export default function Home() {
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState<Movie[]>([]);
+    const loadMovies = async () => {
+        const result = await getMoviesNowPlaying();
+        setMovies(result.data.results);
+    } 
 
-    useEffect(() => { loadMovies(); }, []);
-
-    async function loadMovies() {
-        const response = await api.get("/now_playing", {
-            params: {
-                api_key: "c1205111bb4dc67b34e32c2ac3dddd67",
-                language: "pt-BR",
-                page: 1
-            }
-        });
-        setMovies(response.data.results);
-    }
+    useEffect(() => { 
+        loadMovies();
+     }, []);
 
     if (movies.length == 0) {
         return <Warning message='Nenhum filme encontrado'/>
     }
 
     return (
-        <div className="list-movies">
+        <Container>
             {movies.map((movie) => {
                 return (
-                    <article key={movie.id}>
+                    <Card key={movie.id}>
                         <Link to={`details/${movie.id}`}>
-                            <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} />
+                            <Poster src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} />
                         </Link>
-                    </article>
+                    </Card>
                 )
             })}
-        </div>
+        </Container>
     )
 }
