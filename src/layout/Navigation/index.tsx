@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
 
-import './navigation.css'
+import { NavStyle } from "./navigation.styled";
 
 export default function Navigation() {
     return (
-        <nav>
+        <NavStyle>
             <NavLink to="/"> Home </NavLink>
             <NavLink to="/favorites"> Meus Favoritos </NavLink>
-        </nav>
+        </NavStyle>
     )
 }

@@ -1,9 +1,10 @@
-import './footer.css'
+import { FooterStyle, IdentityStyle } from './footer.styled';
 
 export default function Footer() {
     return (
-        <footer>
-            <strong>Desenvolvido por Raphael L. Mazanek</strong>
-        </footer>
+        <FooterStyle>
+            <IdentityStyle>Desenvolvido por Raphael L. Mazanek</IdentityStyle>
+            <span className='material-symbols-outlined'>devices</span>
+        </FooterStyle>
     );
 }

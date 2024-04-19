@@ -1,10 +1,14 @@
-import './warning.css'
+import { MessageContainer } from './warning.styles'
 
-export default function Warning(params){
+interface WarningProps {
+    message: string
+}
+
+export default function Warning(params: WarningProps){
     return (
-        <div className="message">
+        <MessageContainer className="message">
             <span className='material-symbols-outlined'>mood_bad</span>
             <h1>{params.message}</h1>
-        </div>
+        </MessageContainer>
     )
 }

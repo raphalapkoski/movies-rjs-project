@@ -1,12 +1,11 @@
-import './header.css'
-
 import Navigation from '../Navigation'
+import { HeaderStyle, TitleStyle } from './header.styled'
 
 export default function Header(){
     return(
-        <header>
-            <h1 className="title">Movies RJS</h1>
+        <HeaderStyle>
+            <TitleStyle>Movies RJS</TitleStyle>
             <Navigation />
-        </header>
+        </HeaderStyle>
     )
 }
