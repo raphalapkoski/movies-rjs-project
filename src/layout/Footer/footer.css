@@ -5,6 +5,8 @@ footer {
     width: 100%;
     align-items: center;
     justify-content: end;
+    position: absolute;
+    bottom: 0;
 }
 
 footer strong {
