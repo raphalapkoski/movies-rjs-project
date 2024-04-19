@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import './home.css'
 
 import api from "../../services/api"
+import Warning from "../../shared/Warning";
 
 export default function Home() {
     const [movies, setMovies] = useState([]);
@@ -19,6 +20,10 @@ export default function Home() {
             }
         });
         setMovies(response.data.results);
+    }
+
+    if (movies.length == 0) {
+        return <Warning message='Nenhum filme encontrado'/>
     }
 
     return (
