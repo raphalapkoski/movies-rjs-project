@@ -47,9 +47,15 @@
     font-weight: bold;
     border-radius: 15px;
     background-color: transparent;
-    border: 1px solid whitesmoke;
+    border: 1px solid white;
     cursor: pointer;
-    color: whitesmoke;
+    color: white;
+
+    a {
+        cursor: pointer;
+        color: whitesmoke;
+        text-decoration: none;
+    }
 }
 
 .buttons-align button:hover {
