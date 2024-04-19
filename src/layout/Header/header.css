@@ -1,0 +1,14 @@
+header {
+    display: flex;
+    background-color: black;
+    height: 80px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    margin-left: 5rem;
+    color: red;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
